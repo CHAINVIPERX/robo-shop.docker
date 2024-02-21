@@ -1,6 +1,9 @@
 FROM node:18.19.1-alpine3.19
 EXPOSE 8080
 WORKDIR /opt/server
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+RUN chown roboshop:roboshop /opt/server
+USER roboshop
 ENV MONGO=true
 COPY package.json /opt/server/
 COPY server.js /opt/server/
